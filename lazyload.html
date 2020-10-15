@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        html, body{
+            font-size: 0;
+        }
+    </style>
+</head>
+<body>
+    <img src="default.gif" data-src="https://img.zcool.cn/community/0168f35f17e6a8a801215aa06c2f48.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="904" alt="">
+    <img src="default.gif" data-src="https://img.zcool.cn/community/0195aa5f17e6bda8012066211e593d.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1908" alt="">
+    <img src="default.gif" data-src="https://img.zcool.cn/community/0180745f17e6a7a801215aa0a943b5.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="743" alt="">
+    <img src="default.gif" data-src="https://img.zcool.cn/community/016e665f17e6a7a801206621fe783c.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1151" alt="">
+    <img src="default.gif" data-src="https://img.zcool.cn/community/0181b25f17e6a4a801215aa0692e59.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1083" alt="">
+    <img src="default.gif" data-src="https://img.zcool.cn/community/01f6c45f17e6dba801215aa054fcb3.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1908" alt="">
+    <script>
+        function throttle(fn, delay){
+            var prev = Date.now();
+            return function(){
+                var now = Date.now();
+                if(now - prev >= delay){
+                    fn.apply(this, arguments);
+                    prev = Date.now();
+                }
+            }
+        }
+
+        var img = document.getElementsByTagName('img');
+
+        lazyload();
+        window.addEventListener('scroll', throttle(lazyload, 500));
+        
+        function lazyload(){
+            var scrollTop = document.documentElement.scrollTop;
+            var clientHeight = document.documentElement.clientHeight;
+            var n =0;
+            
+            for(var i=n;i<img.length;i++){
+                if(img[i].offsetTop < scrollTop + clientHeight){
+                    img[i].src = img[i].getAttribute('data-src');
+                    img[i].className = 'loaded';
+                    n = i + 1;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

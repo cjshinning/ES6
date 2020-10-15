@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>call,apply,bind使用和区别</title>
+</head>
+<body>
+    <!-- <h3>call,apply,bind</h3> -->
+    <div>1</div>
+    <div>2</div>
+    <div>3</div>
+    <script>
+        // 三者存在意义：改变函数执行时的上下文，在具体一点就是改变函数运行时的this指向
+        // let obj = {
+        //     name: 'Jenny'
+        // }
+
+        // function Child(name){
+        //     this.name = name;
+        // }
+
+        // Child.prototype = {
+        //     constructor: Child,
+        //     showName: function(){
+        //         console.log(this.name);
+        //     }
+        // }
+
+        // var child = new Child('thomas');
+        // child.showName();
+
+        // // call,apply,bind使用
+        // // child.showName.call(obj);
+        // // child.showName.apply(obj);
+        // let bind = child.showName.bind(obj);
+        // bind();
+
+        // bind方法同样可以改变this指向，但和apply,call不同的是不会马上就执行.
+
+        // call,apply,bind区别：
+        // call和apply改变了函数的this上下文后便执行该函数，而bind则是返回改变上下文后的一个函数
+
+        // call,apply区别：
+        // 它们在于参数的区别，第一个参数都是要改变的上下文对象，而call从第二个参数开始以参数列表的形式展现，apply则是把除了改变上下文的对象的参数放在一个数组里作为它的第二个参数
+
+        // 案例一：求数组中的最值
+        // let arr1 = [1,2,19,6];
+        // console.log(Math.max.call(null,1,2,19,6));  //19
+        // console.log(Math.max.call(null, arr1));  //NaN
+        // console.log(Math.max.apply(null, arr1));    //19
+
+        // 应用：
+        // // 1、将伪数组转化为数组（含有length属性的对象，dom节点，函数的函数arguments）
+        // let div = document.getElementsByTagName('div'); 
+        // // console.log(div);   //HTMLCollection(3) [div, div, div]
+
+        // let arr2 = Array.prototype.slice.call(div);
+        // console.log(arr2);  // [div, div, div]
+        // // Array.prototype.slice不支持ie6-ie8
+
+        // 标准的抽取累述祖对象转化为数组的工具类
+        // function listToArray(likeAry){
+        //     var ary = [];
+        //     try{
+        //         ary = Array.prototype.slice.call(likeAry);
+        //     }catch(e){
+        //         for(var i=0;i<likeAry.length;i++){
+        //             ary[i] = likeAry[i];
+        //         }
+        //     }
+        // }
+
+        // fn内的arguments
+        // function fn10(){
+        //     return Array.prototype.slice.call(arguments);
+        // }
+        // console.log(fn10(1,2,3,4,5));   //[1, 2, 3, 4, 5]
+
+        // 含有length属性的对象
+        // let obj4 = {
+        //     0: 1,
+        //     1: 'thomas',
+        //     2: 13,
+        //     length: 3
+        // };
+        // console.log(Array.prototype.slice.call(obj4));
+
+        // 数组拼接，添加
+        // let arr1 = [1,2,3];
+        // let arr2 = [4,5,6];
+
+        // let arr3 = arr1.concat(arr2);
+        // console.log(arr3);  //[1, 2, 3, 4, 5, 6]
+
+        // console.log(arr1);  //[1, 2, 3]
+        // console.log(arr2);  //[4, 5, 6]
+
+        // 判断变量类型
+        // let arr1 = [1,2,3];
+        // let str1 = 'string';
+        // let obj1 = {name: 'Jenny'};
+
+        // function isArray(obj){
+        //     return Object.prototype.toString.call(obj) === '[object Array]';
+        // }
+        // console.log(isArray(arr1)); //true
+        // console.log(isArray(str1)); //false
+        // console.log(isArray(obj1)); //false
+
+        // call和apply做继承
+        function Animal(name){
+            this.name = name;
+            this.showName = function(){
+                console.log(this.name);
+            }
+        }
+
+        function Cat(name){
+            Animal.call(this, name);
+        }
+
+        var cat = new Cat('TONY');
+        cat.showName(); //false
+    </script>
+</body>
+</html>

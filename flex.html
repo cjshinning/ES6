@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>flex布局</title>
+    <style>
+        /*
+        *   flex-direction属性决定主轴的方向
+        *   flex-wrap项目默尔排在一条线上，这个属性定义，如果一条线排不下，如何换行
+        *   flex-flow属性是flex-direction和flex-wrap属性的简写 
+        *
+        *   justify-content属性定义了项目在主轴上的对齐方式。
+        *   flex-start左对齐
+        *   flex-end右对齐
+        *   center居中
+        *   space-between两端对齐，项目之间的间隔都相等
+        *   space-around每个项目两侧的间隔相等。
+
+        *   align-items属性定义项目在交叉轴上如何对齐。
+        *   flex-start：交叉轴的起点对齐
+        *   flex-end：交叉轴的终点对齐
+        *   center：交叉着的中点对齐
+        *   baseline：项目的第一行文字基线对齐
+        *   stretch：如果项目未设置高度或者设为auto，将占满容器高度
+
+        *   项目的属性
+        *   order定义项目中的排列顺序，数值越小，排列越靠前，默认为0
+        *   flex-flow定义项目的放大比例，默认为0，即如果存在剩余空间，也不放大
+        *   flex-shrink定义了项目的缩小比例，默认为1，即如果空间不足，该项目将缩小
+        *   flex-basis定义了在分配多余空间之前，项目占据的主轴空间。浏览器根据这个属性，计算主轴是否有多余空间。她的默认值是auto,即项目本来的大小.
+        *   flex属性是flex-grow,flex-shrink,flex-basis的缩写，默认值为0 1 auto
+        */
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        .container{
+            display: flex;
+            height: 500px;
+            /* flex-direction: row; */
+            /* flex-direction: row-reverse; */
+            /* flex-direction: column; */
+            /* flex-direction: column-reverse; */
+            /* flex-wrap: nowrap; */
+            /* flex-wrap: wrap; */
+            /* flex-wrap: wrap-reverse; */
+            /* flex-flow: row-reverse nowrap; */
+            /* justify-content: flex-start; */
+            /* justify-content: flex-end; */
+            /* justify-content: center; */
+            /* justify-content: space-between; */
+            /* justify-content: space-around; */
+            /* justify-content: flex-start; */
+            /* justify-content: flex-end; */
+            /* justify-content: center; */
+            /* justify-content: space-between */
+            /* justify-content: space-around; */
+            /* align-items: flex-start; */
+            /* align-items: flex-end; */
+            /* align-items: center; */
+            /* align-items: baseline; */
+            /* align-items: stretch; */
+            /* flex-wrap: wrap; */
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            background: red;
+            margin: 0 10px;
+            text-align: center;
+            line-height: 100px;
+            font-size: 48px;
+            /* align-content: flex-start; */
+            /* align-content: flex-end; */
+        }
+        .box1{
+            /* width: 200px; */
+            /* height: 200px; */
+            /* order: 3; */
+            /* flex-grow: 1; */
+            flex-shrink: 1;
+        }
+        .box2{
+            /* width: 100px; */
+            /* height: 100px; */
+            /* order: 1; */
+            /* flex-grow: 1; */
+            flex-shrink: 0;
+        }
+        .box3{
+            /* width: 300px; */
+            /* height: 300px; */
+            /* order: 2; */
+            /* flex-grow: 1; */
+            flex-shrink: 1;
+        }
+        .box4{
+            /* width: 100px; */
+            /* height: 100px; */
+            /* order: 4; */
+            /* flex-grow: 1; */
+            flex-shrink: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="box box1">1</div>
+        <div class="box box2">2</div>
+        <div class="box box3">3</div>
+        <div class="box box4">4</div>
+    </div>
+</body>
+</html>

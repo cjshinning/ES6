@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>css3动画top和translate</title>
+    <style>
+        /* *{
+            margin: 0;
+            padding: 0;
+        } */
+        .move{
+            position: absolute;
+            left: 400px;
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            animation: demo2 5s alternate infinite;
+        }
+        @keyframes demo1{
+            0%{
+                top: 0px;
+            }
+            100%{
+                top: 300px;
+            }
+        }
+        @keyframes demo2{
+            0%{
+                transform: translateY(0px);
+            }
+            100%{
+                transform: translateY(300px);
+            }
+        }
+
+        .hr{
+            width: 300px;
+            background-color: #000;
+        }
+        .half-px{
+            height: 0.5px;
+        }
+        .one-px{
+            height: 1px;
+        }
+        .scale-half{
+            height: 1px;
+            transform: scaleY(0.5);
+            transform-origin: 50% 100%;
+        }
+
+    </style>
+</head>
+<body>
+    <!-- <div class="move"></div> -->
+    <h3>0.5px</h3>
+    <div class="hr scale-half"></div>
+    <h3>1px</h3>
+    <div class="hr one-px"></div>
+</body>
+</html>

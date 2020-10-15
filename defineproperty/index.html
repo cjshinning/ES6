@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    11
+</body>
+<script>
+// var someone = {};
+// Object.defineProperty(someone, 'name', {
+//     value: 'covergo',
+//     // writable: true
+//     configurable: true
+// })
+// delete someone.name
+// console.log(someone.name)
+// someone.name = 'linkzhu'
+// console.log(someone.name)
+
+var someone = {}
+someone.name = 'covergo'
+console.log(Object.getOwnPropertyDescriptor(someone, 'name'))
+
+var otherone = {}
+Object.defineProperty(otherone, 'name', {
+    value: 'covergo'
+})
+console.log(Object.getOwnPropertyDescriptor(otherone, 'name'))
+
+</script>
+</html>

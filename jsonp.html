@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>jsonp原理</title>
+</head>
+<body>
+    <script>
+        // jsonp原理：
+        // 1、首先利用script标签的src属性来实现跨域
+        // 2、通过将前端方法作为参数传递到服务器端，然后由服务器端注入参数之后在返回，实现服务器端想客户端通信
+        // 3、由于使用script的src属性，因此只支持get方法
+
+        // jsonp实现：
+        // 1、设定一个script标签，
+        // 如:<script src="http://localhost:8080/?callbak=hello">
+        // 2、callback定义了一个函数名，而远程服务端通过调用指定的函数并传入参数来实现参数传递
+        // if(params.query.callback){
+        //     var str = params.query.callback + '(' + JSON.stringify(data) + ')';
+        //     res.end(str);
+        // }
+        // 3、客户端接收到返回的js脚本，开始解析和执行
+        function jsonp(req){
+            var script = document.createElement('script');
+            var url = req.url + '?callback=' + req.callback.name;
+            script.src = url;
+            document.getElementsByTagName('head')[0].appendChild(script);
+        }    
+
+        function hello(res){
+            alert('hello ' + res.data);
+        }
+        jsonp({
+            url: 'http://localhost:8080/',
+            callback: hello
+        })
+    </script>
+    
+</body>
+</html>

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>防抖和节流</title>
+    <style>
+        p{
+            line-height: 50px;
+        }
+    </style>
+</head>
+<body>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <p>我是一行文字。。。。</p>
+    <script>
+        // 函数防抖：将几次操作合并为一次操作进行。
+        // 原理：维护一个计时器，规定在delay时间后触发函数，但是在delay时间内再次触发的话，就会取消之前的计时器而重新设置。这样一来只有最后一次操作才能被触发。
+        // function debounce(fn, wait){
+        //     var timer = null;
+        //     return function(){
+        //         if(timer){
+        //             clearTimeout(timer);
+        //         }
+        //         timer = setTimeout(fn, wait);
+        //     }
+        // }   
+        // // 处理函数
+        // function handle(){
+        //     console.log(Math.random());
+        // } 
+        // // 滚动事件
+        // window.addEventListener('scroll', debounce(handle, 1000))
+
+        // 函数节流：当持续触发事件时，保证一定事件段内只调用一次事件处理函数。
+        var throttle = function(fn, delay){
+            var prev = Date.now();
+            return function(){
+                var now = Date.now();
+                if(now - prev >= delay){
+                    fn.apply(this, arguments);
+                    prev = Date.now();
+                }
+            }
+        }
+
+        function handle(){
+            console.log(Math.random());
+        }
+        window.addEventListener('scroll', throttle(handle, 5000));
+
+        
+    </script>
+</body>
+</html>

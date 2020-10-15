@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width= , initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div style="height:5000px;"></div>
+    <script>
+        // 总参考：https://juejin.im/post/6873513007037546510
+        
+        // // 1、防抖
+        // function debounce(func, delay = 1000){
+        //     let timer;
+        //     return function(...args){
+        //         if(timer){
+        //             clearTimeout(timer);
+        //         }
+        //         timer = setTimeout(() => {
+        //             func.apply(this,args);
+        //         }, delay);
+        //     }
+        // }
+
+        // const task = () => {
+        //     console.log('task');
+        // }
+        // // window.addEventListener('scroll', task);
+        // window.addEventListener('scroll', debounce(task, 1000));
+
+        // // 2、节流
+        // function throttle(func, delay = 1000){
+        //     let canRun = true;
+        //     return function(...args){
+        //         if(!canRun) return;
+        //         canRun = false;
+        //         setTimeout(() => {
+        //             func.apply(this, args);
+        //             canRun = true;
+        //         }, delay);
+        //     }
+        // }
+
+        // const task = () => {
+        //     console.log('task');
+        // }
+        // // window.addEventListener('scroll', task);
+        // window.addEventListener('scroll', throttle(task, 1000));
+
+        // // 3、new
+        // function myNew(Func, ...args){
+        //     const instance = {};
+        //     if(Func.prototype){
+        //         Object.setPrototypeOf(instance, Func.prototype);
+        //     }
+        //     const res = Func.apply(instance, args);
+        //     if(typeof res === 'function' || (typeof res === 'object' && res !== null)){
+        //         return res;
+        //     }
+        //     return instance;
+        // }
+
+        // function Person(name){
+        //     this.name = name;
+        // }
+        // Person.prototype.sayName = function(){
+        //     console.log(`My name is ${this.name}`);
+        // }
+        // const me = myNew(Person, 'Jack');
+        // me.sayName();
+        // console.log(me);
+
+        // 4、bind
+
+        // 5、call
+        // Function.prototype.myCall = function(context=globalThis){
+        //     const key = Symbol('key');
+        //     context[key] = this;
+        //     const args = [...arguments].slice(1);
+        //     const res = context[key](...args);
+        //     delete context[key];
+        //     return res;
+        // }
+
+        // const me = { name: 'Jack' };
+        // function say(){
+        //     console.log(`My name is ${this.name || 'default'}`);
+        // }
+        // say.myCall(me);
+        // say();
+
+        // 6、apply
+
+        // 7、deepCopy
+        // function deepCopy(obj){
+        //     const res = {};
+        //     Object.keys(obj).forEach((key) => {
+        //         if(obj[key] instanceof Object){
+        //             res[key] = deepCopy(obj[key]);
+        //         }else{
+        //             res[key] = obj[key];
+        //         }
+        //     })
+        //     return res;
+        // }
+
+        // const source = {
+        //     name: 'Jack',
+        //     meta: {
+        //         age: 12,
+        //         say(){
+        //             console.log('Hello');
+        //         }
+        //     }
+        // }
+
+        // const target = deepCopy(source);
+        // target.name = 'Jenny';
+        // console.log(source.name);   //Jack
+        // console.log(target.name);   //Jenny
+
+        // // 8、事件总线/发布订阅者模式
+        // class EventEmitter {
+        //     constructor(){
+        //         this.cache = {};
+        //     }
+        //     on(name, fn){
+        //         if(this.cache[name]){
+        //             this.cache[name].push(fn);
+        //         }else{
+        //             this.cache[name] = [fn];
+        //         }
+        //     }
+        //     off(name, fn){
+        //         const tasks = this.cache[name];
+        //         if(tasks){
+        //             const index = tasks.findIndex((f) => f === fn || f.callback === fn);
+        //             if(index >= 0){
+        //                 tasks.splice(index, 1);
+        //             }
+        //         }
+        //     }
+        //     emit(name){
+        //         if(this.cache[name]){
+        //             const tasks = this.cache[name].slice();
+        //             for(let fn of tasks){
+        //                 fn();
+        //             }
+        //         }
+        //     }
+        // }
+
+        // const eventBus = new EventEmitter();
+        // const task1 = () => {
+        //     console.log('task1');
+        // }
+        // const task2 = () => {
+        //     console.log('task2');
+        // }
+        // eventBus.on('task', task1);
+        // eventBus.on('task', task2);
+
+        // // setTimeout(() => {
+        // //     eventBus.emit('task');
+        // // }, 3000)
+
+        // eventBus.off('task', task1);
+
+        // setTimeout(() => {
+        //     eventBus.emit('task');
+        // }, 3000)
+
+        // 9、柯里化
+
+        // 10、ES5实现继承
+
+        // 14、vue reactive
+
+        // Dep module
+        // class Dep {
+        //     static stack = []
+        //     static target = null
+        //     deps = null
+            
+        //     constructor() {
+        //         this.deps = new Set()
+        //     }
+
+        //     depend() {
+        //         // console.log(Dep.target);
+        //         if (Dep.target) {
+        //             this.deps.add(Dep.target)
+        //             // console.log(this.deps);
+        //         }
+        //     }
+
+        //     notify() {
+        //         this.deps.forEach(w => w.update())
+        //     }
+
+        //     static pushTarget(t) {
+        //         if (this.target) {
+        //             this.stack.push(this.target)
+        //         }
+        //         this.target = t
+        //     }
+
+        //     static popTarget() {
+        //         this.target = this.stack.pop()
+        //     }
+        // }
+
+        // // reactive
+        // function reactive(o) {
+        //     if (o && typeof o === 'object') {
+        //         Object.keys(o).forEach(k => {
+        //             defineReactive(o, k, o[k])
+        //         })
+        //     }
+        //     return o
+        // }
+
+        // function defineReactive(obj, k, val) {
+        //     let dep = new Dep()
+        //     Object.defineProperty(obj, k, {
+        //         get() {
+        //             dep.depend()
+        //             return val
+        //         },
+        //         set(newVal) {
+        //             val = newVal
+        //             dep.notify()
+        //         }
+        //     })
+        //     if (val && typeof val === 'object') {
+        //         reactive(val)
+        //     }
+        // }
+
+        // // watcher
+        // class Watcher {
+        //     constructor(effect) {
+        //         this.effect = effect
+        //         this.update()
+        //     }
+
+        //     update() {
+        //         Dep.pushTarget(this)
+        //         this.value = this.effect() 
+        //         Dep.popTarget()
+        //         return this.value
+        //     }
+        // }
+
+        // // 测试代码
+        // const data = reactive({
+        //     msg: 'aaa'
+        // })
+
+        // new Watcher(() => {
+        //     console.log('===> effect', data.msg);
+        // })
+
+        // setTimeout(() => {
+        //     data.msg = 'hello'
+        // }, 1000)
+
+        // 15、promise
+        class MyPromise{
+            constructor(func){
+                this.status = 'pending';
+                this.value = null;
+                this.resolvedTasks = [];
+                this.rejectedTasks = [];
+                this._resolve = this._resolve.bind(this);
+                this._reject = this._reject.bind(this);
+                try{
+                    func(this._resolve, this._reject);
+                }catch(error){
+                    this._reject(error);
+                }
+            }
+
+            _resolve(value){
+                setTimeout(() => {
+                    this.status = 'fulfilled';
+                    this.value = value;
+                    this.resolvedTasks.forEach(t => t(value));
+                })
+            }
+
+            _reject(reason){
+                setTimeout(() => {
+                    this.status = 'reject';
+                    this.value = reason;
+                    this.rejectedTasks.forEach(t => t(reason));
+                })
+            }
+
+            then(onFulfilled, onRejected){
+                return new MyPromise((resolve, reject) => {
+                    this.resolvedTasks.push((value) => {
+                        try{
+                            const res = onFulfilled(value);
+                            if(res instanceof MyPromise){
+                                res.then(resolve, reject);
+                            }else{
+                                resolve(res);
+                            }
+                        }catch(error){
+                            reject(error);
+                        }
+                    })
+
+                    this.rejectedTasks.push((value) => {
+                        try{
+                            const res = onRejected(value);
+                            if(res instanceof MyPromise){
+                                res.then(resolve, reject);
+                            }else{
+                                reject(res);
+                            }
+                        }catch(error){
+                            reject(error);
+                        }
+                    })
+                })
+            }
+
+            catch(onRejected){
+                return this.then(null, onRejected);
+            }
+        }
+
+        new MyPromise((resolve) => {
+            setTimeout(() => {
+                resolve(1);
+            }, 500);
+        }).then((res) => {
+            console.log(res);
+        })
+
+    </script>
+</body>
+</html>

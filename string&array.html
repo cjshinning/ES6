@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 数组方法
+        // （1）转换数组 valueOf() toString()
+        // var arr = [1,2,3,4,5];
+        // console.log(arr.valueOf());  //返回数组本省
+        // console.log(arr.toString()); //把数组以逗号相连转为字符串
+        // console.log(arr.join());    //用指定分隔符连接数组元素转为字符串，不传为逗号分隔
+        // console.log(arr.join('-'));     //1-2-3-4-5
+        // console.log(arr.join(''));  //12345
+
+        // (2)用于判断是否是数组类型
+        // var arr = [1,2,3,4,5];
+        // console.log(arr instanceof Array);  //true
+        // console.log('a' instanceof Array);  //false
+        // console.log(Array.isArray(arr));    //true
+        // console.log(Array.isArray('a'));    //false
+
+        // （3）增删方法
+        // var arr = [11,22,33,44,55];
+        // arr.push(99);    //从后面添加元素，返回新数组长度
+        // arr.pop();  //从后面删除元素，返回被删除的元素
+        // arr.shift();    //从前面添加元素，返回新数组的长度
+        // arr.unshift(0);     //从前面添加元素，返回新数组的长度
+        // console.log(arr);
+
+        // （4）迭代方法
+        // var arr = [11,22,33,44,55];
+        // var newArr = arr.filter(function(element, index, array){
+        //     if(element > 40){
+        //         return false;
+        //     }
+        //     return true;
+        // })
+        // console.log(newArr);    //[11, 22, 33]
+
+        // var arr = [4, 6, 7, 8, 3, 46, 8];
+        // arr.forEach(function(element,index,array){
+        //     console.log(element);
+        //     console.log(index);
+        //     console.log(arr);
+        // })
+
+        // （5）位置方法
+        // indexOf()返回数组中第一个a出现的位置
+        // var arr = ['c', 'a', 'z', 'a', 'x', 'z', 'a'];
+        // console.log(arr.indexOf('a'));  //1
+
+        // lastIndexOf()返回从后往前数组中第一个a出现的位置
+        // var arr = ['c', 'a', 'z', 'a', 'x', 'z', 'a'];
+        // console.log(arr.lastIndexOf('a'));  //6
+
+        // （6）其他方法
+        // slice截取数组，不会改变原数组，返回一个新数组
+        // var arr = [4,6,7,8,46,8];
+        // console.log(arr.slice(0,2));    //[4,6]
+        // 注：开始能取到，结束取不到
+
+        // splice删除数组中的元素，会对原数组进行修改，返回删掉的数组
+        // var arr = [4,6,7,8,3,46,8];
+        // arr.splice(0,4,'a');    //从第0个开始，删除（4-1）个元素，并将'a'插入删除位置
+        // console.log(arr);   //["a", 3, 46, 8]
+
+        // 清空数组
+        // var arr = [4,6,7,8,3,46,8];
+        // 方式一：
+        // arr.splice(0,arr.length);
+        // 方式二：
+        // arr.length = 0;
+        // 方式三：
+        // arr = [];
+        // console.log(arr);
+
+        // 字符串方法
+        // 截取方法：
+        // slice() 从start位置开始，截取到end位置，end取不到
+        // substring() 从start位置开始，截取到end位置，end取不到
+        // substr() 从start位置开始，截取length个字符
+
+        // 位置方法 indexOf()
+        // 替换方法 replace()
+        // 字符方法 charAt()
+
+        // 其他
+        // split(),trim(),charCodeAt(),str[0]
+        var a = 'I love you';
+        // console.log(a.slice(0,4));  //I lo
+        // console.log(a.substring(0,4))   //I lo
+        // console.log(a.substr(1,3)); // lo
+        // console.log(a.indexOf('v'));    //4
+        // console.log(a.replace('love','hate'));  //I hate you
+
+        // console.log(a.split(' '))   //["I", "love", "you"]
+        // console.log(a.split(''))    //["I", " ", "l", "o", "v", "e", " ", "y", "o", "u"]
+
+        console.log(a.trim());  //I love you
+
+    </script>
+</body>
+</html>

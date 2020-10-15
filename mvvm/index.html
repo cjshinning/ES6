@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>my vue</title>
+</head>
+<body>
+    <div id="app">
+        <h3>双向数据绑定</h3>
+        <div class="cell">
+            <div class="text" v-text="myText"></div>
+            <input class="input" type="text" v-model="myText" />
+        </div>
+    </div>
+
+    <!-- <script src="./js/index.js"></script>
+    <script>
+        const app = new myVue({
+            el: '#app',
+            data: {
+                myText: 'hello world'
+            }
+        })
+    </script> -->
+
+    <script>
+        // 1、创建一个观察者
+        // 包含一个消息容器和三个方法，分别是订阅消息方法on，取消订阅消息方法off，发送订阅消息subscribe
+        const Observe = (function(){
+            let __message = {};
+            return {
+                // 注册消息接口
+                on: function(type, fn){
+                    // 如果消息不存在，创建一个该消息类型
+                    if(typeof __message[type] === 'undefined'){
+                        // 将执行方法推入消息对应的执行队列中
+                        __message[type] = [fn];
+                    }else{
+                        // 如果消息存在，直接将执行方法推入该消息对应的执行队列中
+                        __message[type].push(fn);
+                    }
+                },
+                // 发布消息接口
+                subscribe: function(type, args){
+                    // 如果该消息没有注册，直接返回
+                    if(!__message[type]) return;
+                    // 定义消息信息
+                    let events = {
+                        type: type,         //消息类型
+                        args: args || {}    //参数
+                    },
+                    i = 0,
+                    len = __message[type].length;
+
+                    for(i = 0;i < len;i++){
+                        __message[type][i].call(this, events);
+                    }
+                },
+                // 移除消息接口
+                off: function(type, fn){
+                    // 如果消息执行队列存在
+                    if(__message[type] instanceof Array){
+                        // 从最后一条一次遍历
+                        let i = __message[type].length - 1;
+                        for(; i>=0; i--){
+                            console.log(__message[type][i] === fn);
+                            __message[type][i] === fn && __message[type].splice(i, 1);
+                        }
+                    }
+                }
+            }
+        })();
+
+        Observe.on('say', function(data){
+            console.log(data.args.text);
+        })
+        Observe.on('say', function(){
+            console.log(456);
+        })
+        Observe.on('success', function(){
+            console.log('success');
+        })
+
+        
+
+        Observe.off('success', function(){
+            console.log(success);
+        })
+
+        Observe.subscribe('say', {text: 'hello world'});
+    </script>
+</body>
+</html>

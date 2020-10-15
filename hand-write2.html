@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // 浅复制
+        // function showllowClone(origin, target){
+        //     let tar = target || {};
+
+        //     for(let key in origin){
+        //         if(origin.hasOwnProperty(key)){
+        //             tar[key] = origin[key];
+        //         }
+        //     }
+
+        //     return tar;
+        // }
+
+        // let obj1 = {
+        //     a: 100,
+        //     b: 200,
+        //     c: {
+        //         d: 300
+        //     }
+        // };
+
+        // let obj2 = showllowClone(obj1);
+        // obj2.a = 400;
+        // console.log(obj1.a);
+        // console.log(obj2.a);
+
+        // let obj2 = showllowClone(obj1);
+        // obj2.c.d = 400;
+        // console.log(obj1.c.d);
+        // console.log(obj2.c.d);
+
+        // 深拷贝
+        // function deepClone(origin, target){
+        //     let tar = target || {};
+
+        //     for(let key in origin){
+        //         if(origin.hasOwnProperty(key)){
+        //             if(typeof origin[key] === 'object'){
+        //                 tar[key] = {};
+        //                 deepClone(origin[key], tar[key]);
+        //             }else{
+        //                 tar[key] = origin[key];
+        //             }
+        //         }
+        //     }
+
+        //     return tar;
+        // }
+
+        // let obj1 = {
+        //     a: 100,
+        //     b: 200,
+        //     c: {
+        //         d: 300
+        //     }
+        // };
+
+        // let obj2 = deepClone(obj1);
+        // console.log(obj2);
+        // obj2.c.d = 400;
+        // console.log(obj1.c.d);
+        // console.log(obj2.c.d);
+            
+        // 浅拷贝2
+        // function shallowClone(obj){
+        //     let newObj = {};
+        //     for(let key in obj){
+        //         newObj[key] = obj[key];
+        //     }
+        //     return newObj;
+        // }
+
+        // let obj1 = {
+        //     a: 100,
+        //     b: 200,
+        //     c: {
+        //         d: 300
+        //     }
+        // };
+
+        //let obj2 = shallowClone(obj1);
+
+        // obj1.a = 200;
+        // console.log(obj1.a);    //200
+        // console.log(obj2.a);    //100
+        
+        // obj1.c.d = 400;
+        // console.log(obj1.c.d);
+        // console.log(obj2.c.d);
+
+        // 深拷贝
+        // function deepClone(obj){
+        //     if(typeof obj !== 'object'){
+        //         return obj;
+        //     }
+        //     let result = {};
+        //     for(let i in obj){
+        //         result[i] = deepClone(obj[i]);
+        //     }
+        //     return result;
+        // }
+
+        // function deepClone(obj){
+        //     return JSON.parse(JSON.stringify(obj));
+        // }
+
+        // let obj1 = {
+        //     a: 100,
+        //     b: 200,
+        //     c: {
+        //         d: 300
+        //     }
+        // };
+
+        // let obj2 = deepClone(obj1);
+
+        // obj1.a = 200;
+        // console.log(obj1.a);    //200
+        // console.log(obj2.a);    //100
+        
+        // obj1.c.d = 400;
+        // console.log(obj1.c.d);
+        // console.log(obj2.c.d);
+
+        // instanceof实现
+        // function instance_of(L, R){
+        //     var O = R.prototype;
+        //     L = L.__proto__;
+        //     while(true){
+        //         if(L === null){
+        //             return false;
+        //         }
+        //         if(O === L){
+        //             return true;
+        //         }
+        //         L = L.__proto__;
+        //     }
+        // }
+
+        // var a = [];
+        // var b = {};
+
+        // function Foo(){}
+        // var c = new Foo();
+
+        // function child(){}
+        // function father(){}
+
+        // child.prototype = new father();
+        // var d = new child();
+
+        // console.log(instance_of(a, Array));
+        // console.log(instance_of(b, Object));
+        // console.log(instance_of(c, Foo));
+        // console.log(instance_of(d, child));
+        // console.log(instance_of(d, father));
+
+        // new实现
+        // function Car(make, model, year){
+        //     this.make = make;
+        //     this.model = model;
+        //     this.year = year;
+        // }
+
+        // var car1 = new Car('Jenny', 'Talon TSi', 1993);
+        // console.log(car1.make);
+
+        // function newOperator(ctor){
+        //     if(typeof ctor !== 'function'){
+        //         throw 'newOperator function the first param must be a function';
+        //     }
+            
+        //     var args = Array.prototype.slice.call(arguments, 1);
+            
+        //     var obj = {};
+
+        //     obj.__proto__ = ctor.prototype;
+
+        //     var result = ctor.apply(obj, args);
+
+        //     return obj;
+        // }
+
+        // function Car(make, model, year){
+        //     this.make = make;
+        //     this.model = model;
+        //     this.year = year;
+        // }
+
+        // var car1 = newOperator(Car, 'Jenny', 'Talon TSi', 1993);
+        // console.log(car1.make);
+
+        // call实现
+        // var foo = {
+        //     value: 1
+        // }
+        // function bar(){
+        //     console.log(this.value);
+        // }
+        // bar.call(foo);
+
+        // var foo = {
+        //     value: 1,
+        //     bar: function(){
+        //         console.log(this.value);
+        //     }
+        // }
+
+        // foo.bar();
+
+        // 模拟步骤：
+        // 1、将函数设为对象的属性
+        // 2、执行该函数
+        // 3、删除该函数
+        // foo.fn = bar;
+        // foo.fn();
+        // delete foo.fn;
+
+        // 第一版
+        // Function.prototype.call2 = function(context){
+        //     context.fn = this;
+        //     context.fn();
+        //     delete context.fn;
+        // }
+
+        // var foo = {
+        //     value: 1
+        // }
+
+        // function bar(){
+        //     console.log(this.value);
+        // }
+
+        // bar.call2(foo);
+
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar(name, age){
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+
+        // bar.call(foo, 'Jenny', 18);
+
+        // 第二版
+        // Function.prototype.call2 = function(context){
+        //     context.fn = this;
+        //     var args = [];
+        //     for(var i=1,len=arguments.length;i<len;i++){
+        //         args.push('arguments[' + i + ']');
+        //     }
+        //     eval('context.fn(' + args + ')');
+        //     delete context.fn;
+        // }
+
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar(name, age){
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+
+        // bar.call2(foo, 'Jenny', 18);
+
+        // var value = 1;
+
+        // function bar(){
+        //     console.log(this.value);
+        // }
+
+        // bar.call(null);
+
+        // 第三版
+        // Function.prototype.call2 = function(context){
+        //     var context = context || window;
+        //     context.fn = this;
+        //     var args = [];
+        //     for(var i=1,len=arguments.length;i<len;i++){
+        //         args.push('arguments[' + i + ']');
+        //     }
+        //     var result = eval('context.fn(' + args + ')');
+        //     delete context.fn;
+        //     return result;
+        // }
+
+        // var value = 2;
+
+        // var obj = {
+        //     value: 1
+        // };
+
+        // function bar(name, age){
+        //     console.log(this.value);
+        //     return {
+        //         value: this.value,
+        //         name: name,
+        //         age: age
+        //     }
+        // }
+
+        // bar.call2(null);
+
+        // console.log(bar.call(obj, 'Jenny', 18));
+
+        // apply实现
+        // Function.prototype.apply2 = function(context, arr){
+        //     var context = Object(context) || window;
+        //     context.fn = this;
+
+        //     var result;
+        //     if(!arr){
+        //         result = context.fn();
+        //     }else{
+        //         var args = [];
+        //         for(var i = 0, len = arr.length; i < len; i++){
+        //             args.push('arr[' + i + ']');
+        //         }
+        //         result = eval('context.fn(' + args + ')');
+        //     }
+
+        //     delete context.fn;
+        //     return result;
+        // }
+
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar(name, age){
+        //     console.log(name);
+        //     console.log(age);
+        //     console.log(this.value);
+        // }
+
+        // bar.apply2(foo, ['Jenny', 18]);
+
+        // bind实现
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar(){
+        //     console.log(this.value);
+        // }
+
+        // var bindFoo = bar.bind(foo);
+        // bindFoo();
+
+        // Function.prototype.bind2 = function(context){
+        //     var self = this;
+        //     return function(){
+        //         return self.apply(context);
+        //     }
+        // }
+
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar(){
+        //     console.log(this.value);
+        // }
+
+        // var bindFoo = bar.bind2(foo);
+        // bindFoo();
+
+        // var foo = {
+        //     value: 1
+        // };
+
+        // function bar(name, age){
+        //     console.log(this.value);
+        //     console.log(name);
+        //     console.log(age);
+        // }
+
+        // var bindFoo = bar.bind(foo, 'daisy');
+        // bindFoo('18');
+
+        // 第二版
+        // Function.prototype.bind2 = function(){
+        //     var self = this;
+        //     var args = Array.prototype.slice.call(arguments, 1);
+
+        //     return function(){
+        //         var bindArgs = Array.prototype.slice.call(arguments);
+        //         return self.apply(context, args, concat(bindArgs));
+        //     }
+        // }
+
+        // 实现数组扁平化flat一
+        // let arr = [
+        //     [1, 2, 2],
+        //     [3, 4, 5, 5],
+        //     [6, 7, 8, 9, [11, 12, [12, 13, [14]]]],
+        //     10
+        // ]
+
+        // const myFlat = (arr) => {
+        //     let newArr = [];
+        //     let cycleArray = (arr) => {
+        //         for(let i = 0; i < arr.length; i++){
+        //             let item = arr[i];
+        //             if(Array.isArray(item)){
+        //                 cycleArray(item);
+        //             }else{
+        //                 newArr.push(item);
+        //             }
+        //         }
+        //     }
+        //     cycleArray(arr);
+        //     return newArr;
+        // }
+
+        // console.log(myFlat(arr));
+
+        // 实现数组扁平化flat二
+        // const myFlat = arr => {
+        //     return arr.reduce((pre, cur) => {
+        //         return pre.concat(Array.isArray(cur) ? myFlat(cur) : cur);
+        //     }, [])
+        // }
+
+        // let arr = [
+        //     [1, 2, 2],
+        //     [3, 4, 5, 5],
+        //     [6, 7, 8, 9, [11, 12, [12, 13, [14]]]],
+        //     10
+        // ]
+
+        // console.log(myFlat(arr));
+
+        // 基于Generator函数实现async/await原理
+
+
+        // 基于promise封装ajax
+        // function ajax(url, method){
+        //     return new Promise((resolve, reject) => {
+        //         const xhr = new XMLHttpRequest();
+        //         xhr.open(url, method, true);
+        //         xhr.onreadystatechange = function(){
+        //             if(xhr.readyState === 4){
+        //                 if(xhr.status === 200){
+        //                     resolve(xhr.responseText);
+        //                 }else if(xhr.status === 404){
+        //                     reject(new Error('404'));
+        //                 }
+        //             }else{
+        //                 reject('请求数据失败！');
+        //             }
+        //         }
+        //         xhr.send(null);
+        //     })
+        // }
+
+        // 手动实现sleep
+        // function sleep(wait){
+        //     return new Promise((resolve, reject) => {
+        //         setTimeout(() => {
+        //             resolve();
+        //         }, wait);
+        //     })
+        // }
+
+        // let sayHello = (name) => {
+        //     console.log(`hello ${name}`);
+        // }
+
+        // async function autoRun(){
+        //     await sleep(3000);
+        //     let demo1 = sayHello('Myth');
+        //     let demo2 = sayHello('Jenny');
+        //     let demo3 = sayHello('aaa');
+        // }
+
+        // autoRun();
+
+        // ES5实现继承
+        // function Parent(name){
+        //     this.name = name;
+        //     this.colors = ['red', 'blue', 'green'];
+        // }
+        // Parent.prototype.getName = function(){
+        //     return this.name;
+        // }
+        // function Child(name, age){
+        //     Parent.call(this, name);
+        //     this.age = age;
+        // }
+
+        // // Child.prototype = Object.create(Parent.prototype);
+        // // Child.prototype.constructor = Child;
+        // Child.prototype = new Parent();
+
+        // Child.prototype.getAge = function(){
+        //     return this.age;
+        // }
+
+        // let girl = new Child('Lisa', 18);
+        // console.log(girl.getName());
+
+        // 手动实现发布订阅
+        // class EventEmitter{
+        //     constructor(){
+        //         // 事件对象，存放订阅的名字和事件
+        //         this.events = {};
+        //     }
+        //     // 订阅事件的方法
+        //     on(eventName, callback){
+        //         if(!this.events[eventName]){
+        //             // 注意：一个名字可以订阅多个事件
+        //             this.events[eventName] = [callback];
+        //         }else{
+        //             // 存在则push到指定数组的尾部保存
+        //             this.events[eventName].push(callback);
+        //         }
+        //     }
+        //     // 触发事件的方法
+        //     emit(eventName){
+        //         this.events[eventName] && this.events[eventName].forEach(cb => cb());
+        //     }
+        // }
+
+        // let em = new EventEmitter();
+
+        // function workDay(){
+        //     console.log('每天工作');
+        // }
+
+        // function makeMoney(){
+        //     console.log('赚100万');
+        // }
+
+        // function sayLove(){
+        //     console.log('向喜欢的人示爱');
+        // }
+
+        // em.on('money', makeMoney);
+        // em.on('love', sayLove);
+        // em.on('work', workDay);
+
+        // em.emit('money');
+        // em.emit('love');
+        // em.emit('money');
+
+        // 手动实现观察者模式
+        class Subject {
+            constructor(name){
+                this.state = '开心的';
+                this.observers = [];
+            }
+            attach(o){
+                this.observers.push(o);
+            }
+            setState(newState){
+                this.state = newState;
+                this.observers.forEach(o => o.update(this));
+            }
+        }
+
+        class Observer{
+            constructor(name){
+                this.name = name;
+            }
+            update(student){
+                console.log('当前' + this.name + '被通知了，当前学生状态是' + student.state);
+            }
+        }
+
+        let student = new Subject('学生');
+        let parent = new Observer('父母');
+        let teacher = new Observer('老师');
+
+        student.attach(parent);
+        student.attach(teacher);
+        student.setState('被欺负了');
+    </script>
+</body>
+</html>

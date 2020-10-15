@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <img src="https://img.zcool.cn/community/0168f35f17e6a8a801215aa06c2f48.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="904" alt="">
+    <img src="https://img.zcool.cn/community/0195aa5f17e6bda8012066211e593d.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1908" alt="">
+    <img src="https://img.zcool.cn/community/0180745f17e6a7a801215aa0a943b5.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="743" alt="">
+    <img src="https://img.zcool.cn/community/016e665f17e6a7a801206621fe783c.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1151" alt="">
+    <img src="https://img.zcool.cn/community/0181b25f17e6a4a801215aa0692e59.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1083" alt="">
+    <img src="https://img.zcool.cn/community/01f6c45f17e6dba801215aa054fcb3.jpg@1280w_1l_2o_100sh.jpg" width="1280" height="1908" alt="">
+</body>
+<script>
+    let times = {};
+    let t = window.performance.timing;
+
+    // 重定向时间
+    times.redirectTime = t.redirectEnd - t.redirectStart;
+
+    // dns查询时间
+    times.dnsTime = t.domainLookupEnd - t.domainLookupStart;
+
+    console.log(times);
+</script>
+</html>

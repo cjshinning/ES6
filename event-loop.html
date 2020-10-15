@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>浏览器和node事件机制</title>
+</head>
+<body>
+    <script>
+    // setTimeout(()=>{
+    //     console.log('timer1')
+
+    //     Promise.resolve().then(function() {
+    //         console.log('promise1')
+    //     })
+    // }, 0)
+
+    // setTimeout(()=>{
+    //     console.log('timer2')
+
+    //     Promise.resolve().then(function() {
+    //         console.log('promise2')
+    //     })
+    // }, 0)    
+
+    function LineMax(n){
+        if (n<=1) return 0;
+        if (n==2) return 1;
+        if (n==3) return 2;
+        const a =[0,1,2,3];      //排出前面的边界条件，第i项表示长度为i的绳子的最大乘积
+        const b =[[0],[1],[2],[3]];     //第i项表示，长度为i绳子的最大乘积组合
+        for (var i=4;i<=n;i++){
+            a[i] = 0;    //初始化
+            for (var j=1;j<= n/2;j++){  //循环找出最大乘积及组合并分别记录在a，b数组中
+                if (a[j]*a[i-j] >a[i]){  
+                    a[i] = a[j]*a[i-j];
+                    b[i] = [...b[j], ...b[i-j]];
+                }
+            }
+        }
+        console.log(a[n]);  //输出长度为n的绳子最大乘积
+        console.log(b[n]);   //输出长度为n的绳子最大乘积时的划分组合
+    }
+
+    LineMax(8);
+    </script>
+</body>
+</html>
